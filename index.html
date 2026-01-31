@@ -3,9 +3,10 @@
 <head>
   <title>AZ Sites</title>
 
-  <!-- Home Screen Icon (still needed) -->
+  <!-- Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="az-icon.png">
   <link rel="icon" type="image/png" href="az-icon.png">
+
   <meta name="theme-color" content="#121212">
 
   <style>
@@ -16,21 +17,15 @@
       overscroll-behavior: none;
     }
 
-    /* BIG icon Safari will snapshot */
-    #icon-priority {
-      width: 180px;
-      height: 180px;
-      margin: 40px auto 20px auto;
-      display: block;
-      border-radius: 22%;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
-
     table {
       width: 100%;
       max-width: 1450px;
       margin: auto;
       border-collapse: collapse;
+    }
+
+    td {
+      padding: 0;
     }
 
     iframe {
@@ -39,57 +34,20 @@
       border: none;
       display: block;
     }
-
-    #splash {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #121212;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.4s ease;
-    }
-
-    #splash img {
-      width: 110px;
-      height: 110px;
-      opacity: 0.95;
-    }
   </style>
-  <meta http-equiv="Cache-Control" content="no-store">
 </head>
 
 <body>
 
-<!-- Splash -->
-<div id="splash">
-  <img src="az-icon.png" alt="AZ">
-</div>
-
-<!-- THIS is what Safari will use for bookmark icon -->
-<img id="icon-priority" src="az-icon.png" alt="AZ">
-
 <table>
-  <tr><td><iframe src="https://mstry9.nsromania.info/?token=read1-7bcf2859f8c8f39a" loading="lazy"></iframe></td></tr>
-  <tr><td><iframe src="https://mstry9azure.azurewebsites.net/?token=read1-75f11cf6fb86a6ee" loading="lazy"></iframe></td></tr>
-  <tr><td><iframe src="https://mstry9online.nsromania.info/?token=read1-cee46c0510d61c50" loading="lazy"></iframe></td></tr>
-  <tr><td><iframe src="https://mstry9google.nightscoutfree.com/?token=read1-85949d1e3fd02e59" loading="lazy"></iframe></td></tr>
-  <tr><td><iframe src="https://mstry9google2.mooo.com/?token=alexa-3cdbb9b47a4f8afc" loading="lazy"></iframe></td></tr>
-  <tr><td><iframe src="https://mstry9home.duckdns.org:1338/?token=read1-5e12381731c72406" loading="lazy"></iframe></td></tr>
-  <tr><td><iframe src="https://mstry9--nightscout--cmnxw946qpz2.code.run/?token=read1-97a5f0f91c9e024c" loading="lazy"></iframe></td></tr>
+  <tr><td><iframe src="https://mstry9.nsromania.info/?token=read1-7bcf2859f8c8f39a" loading="lazy" referrerpolicy="no-referrer"></iframe></td></tr>
+  <tr><td><iframe src="https://mstry9azure.azurewebsites.net/?token=read1-75f11cf6fb86a6ee" loading="lazy" referrerpolicy="no-referrer"></iframe></td></tr>
+  <tr><td><iframe src="https://mstry9online.nsromania.info/?token=read1-cee46c0510d61c50" loading="lazy" referrerpolicy="no-referrer"></iframe></td></tr>
+  <tr><td><iframe src="https://mstry9google.nightscoutfree.com/?token=read1-85949d1e3fd02e59" loading="lazy" referrerpolicy="no-referrer"></iframe></td></tr>
+  <tr><td><iframe src="https://mstry9google2.mooo.com/?token=alexa-3cdbb9b47a4f8afc" loading="lazy" referrerpolicy="no-referrer"></iframe></td></tr>
+  <tr><td><iframe src="https://mstry9home.duckdns.org:1338/?token=read1-5e12381731c72406" loading="lazy" referrerpolicy="no-referrer"></iframe></td></tr>
+  <tr><td><iframe src="https://mstry9--nightscout--cmnxw946qpz2.code.run/?token=read1-97a5f0f91c9e024c" loading="lazy" referrerpolicy="no-referrer"></iframe></td></tr>
 </table>
-
-<script>
-  window.addEventListener("DOMContentLoaded", function () {
-    const splash = document.getElementById("splash");
-    splash.style.opacity = "0";
-    setTimeout(() => splash.style.display = "none", 400);
-  });
-</script>
 
 </body>
 </html>
