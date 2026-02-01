@@ -1,0 +1,9 @@
+{
+  "routes": [
+    {
+      "route": "/*",
+      "redirect": "https://mstry9azurens.crabdance.com*",
+      "statusCode": 301
+    }
+  ]
+}
