@@ -1,15 +1,13 @@
 /* --- Nightscout Stats Service Worker ---
-   Version 4 - Offline app shell + clean Nightscout fetches
+   Version 5 - Offline app shell + clean Nightscout fetches
 */
 
-const CACHE_NAME = "ns-stats-shell-v4";
+const CACHE_NAME = "ns-stats-shell-v5";
 
 // Files to precache for offline UI
 const APP_SHELL = [
   "/",               // Azure rewrites this to index.html
   "/index.html",
-  "/style.css",
-  "/script.js",
   "/manifest.json",
   "/icon-192.png",
   "/icon-512.png"
@@ -42,7 +40,7 @@ self.addEventListener("fetch", (event) => {
   const req = event.request;
   const url = new URL(req.url);
 
-  // --- 1. Handle Nightscout API calls (network only, no referer/origin) ---
+  // --- 1. Nightscout API calls (network only, no referer/origin) ---
   if (url.pathname.includes("/api/")) {
     const cleanRequest = new Request(req.url, {
       method: "GET",
@@ -55,7 +53,6 @@ self.addEventListener("fetch", (event) => {
 
     event.respondWith(
       fetch(cleanRequest).catch(() => {
-        // API offline → return empty JSON instead of breaking the UI
         return new Response("[]", {
           headers: { "Content-Type": "application/json" }
         });
@@ -64,21 +61,18 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // --- 2. App shell files: network-first, fallback to cache ---
+  // --- 2. App shell: network-first, fallback to cache ---
   event.respondWith(
     fetch(req)
       .then((res) => {
-        // Update cache with fresh version
         const clone = res.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(req, clone));
         return res;
       })
       .catch(() => {
-        // Offline fallback
         return caches.match(req).then((cached) => {
           if (cached) return cached;
 
-          // If request was navigation, return offline index.html
           if (req.mode === "navigate") {
             return caches.match("/index.html");
           }
