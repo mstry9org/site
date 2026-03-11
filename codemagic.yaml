@@ -2,20 +2,18 @@ workflows:
   ios-testflight:
     name: iOS TestFlight Build
     working_directory: ios-build/ios
+    integrations:
+      app_store_connect: Codemagic
     environment:
       groups:
-        - app_store_credentials # You will set this up in Codemagic UI
+        - app_store_credentials
       vars:
-        XCODE_PROJECT: "Next-Steps.xcodeproj" 
+        XCODE_PROJECT: "Next-Steps.xcodeproj"
         XCODE_SCHEME: "Next-Steps"
     scripts:
-      - name: Install dependencies
-        script: pod install
       - name: Build and Sign iOS
         script: |
-          agvtool new-version -all $(($BUILD_NUMBER))
           xcode-project build-ipa --project "$XCODE_PROJECT" --scheme "$XCODE_SCHEME"
     publishing:
       app_store_connect:
         auth: integration
-        submit_to_testflight: true
